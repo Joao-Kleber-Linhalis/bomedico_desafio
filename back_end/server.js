@@ -1,10 +1,9 @@
 import express, { json } from 'express';
 import mongoose from 'mongoose';
+import cors from 'cors';
+import routes from './routes/routes.js';
 
-
-var server = express();
-var routes = require('./routes/routes');
-const cors = require('cors');
+const server = express();
 
 mongoose.connect(
     "mongodb://localhost:27017/desafio_bomedico",

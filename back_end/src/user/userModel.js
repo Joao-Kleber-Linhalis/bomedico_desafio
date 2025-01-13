@@ -1,31 +1,14 @@
-import mongoose, { Schema as _Schema } from 'mongoose';
-var Schema = _Schema;
+import mongoose from 'mongoose';
+const { Schema } = mongoose;
 
-var userSchema = new Schema({
-    first_name: {
-        type: String,
-        required: true,
-    },
-    last_name: {
-        type: String,
-        required: true,
-    },
-    state: {
-        type: String,
-        required: true,
-    },
-    city: {
-        type: String,
-        required: true,
-    },
-    email: {
-        type: String,
-        required: true,
-    },
-    phone: {
-        type: String,
-        required: true,
-    }
+const userSchema = new Schema({
+    first_name: { type: String, required: true },
+    last_name: { type: String, required: true },
+    state: { type: String, required: true },
+    city: { type: String, required: true },
+    email: { type: String, required: true },
+    phone: { type: String, required: true },
 });
 
-module.exports = mongoose.model('employees', userSchema);
+const UserModel = mongoose.model('employees', userSchema);
+export default UserModel;

@@ -1,16 +1,30 @@
-var userModel = require('./userModel');
+import userModel from './userModel.js';
 
-export function getDataFromDBService() {
+export async function getDataFromDBService() {
+    try {
+        const users = await userModel.find({});
+        return users;
+    } catch (error) {
+        console.error('Error fetching users:', error);
+        return [];
+    }
+}
 
-    return new Promise(function checkURL(resolve, reject) {
+export async function createUserDBService(userDetails) {
+    try {
+        const userModelData = new userModel({
+            first_name: userDetails.first_name,
+            last_name: userDetails.last_name,
+            state: userDetails.state,
+            city: userDetails.city,
+            email: userDetails.email,
+            phone: userDetails.phone,
+        });
 
-        userModel.find({}, function returnData(error, result) {
-            if (error) {
-                reject(false);
-            }
-            else {
-                resolve(result);
-            }
-        })
-    });
+        await userModelData.save();
+        return true; // Sucesso
+    } catch (error) {
+        console.error('Error saving user:', error);
+        return false; // Falha
+    }
 }

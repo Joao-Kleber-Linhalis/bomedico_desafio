@@ -1,6 +1,9 @@
 import express from 'express';
-var userController = require('../src/user/userController');
+import { getDataControllerFn, createUserControllerFn } from '../src/user/userController.js';
 
 const router = express.Router();
 
-router.route('/user/getAll').get(userController.getDataControllerFn);
+router.route('/user/getAll').get(getDataControllerFn);
+router.route('/user/create').post(createUserControllerFn);
+
+export default router;
