@@ -1,16 +1,10 @@
 import express, { json } from 'express';
-var server = express();
-
 import mongoose from 'mongoose';
 
-// mongoose.connect(, { userNewUrlParser: true, useUnifiedTopology: true }).then(function checkDB(error) {
-//     if (error) {
-//         console.log("error " + error);
-//     }
-//     else {
-//         console.log("db connected ");
-//     }
-// })
+
+var server = express();
+var routes = require('./routes/routes');
+const cors = require('cors');
 
 mongoose.connect(
     "mongodb://localhost:27017/desafio_bomedico",
@@ -28,6 +22,9 @@ mongoose.connect(
 
 
 server.use(json());
+server.use(routes);
+server.use(cors());
+
 
 server.listen(8000, function check(error) {
     if (error) {
