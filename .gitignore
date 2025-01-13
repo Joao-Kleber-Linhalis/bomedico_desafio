@@ -1,0 +1,20 @@
+# Ignorar logs, caches e outros arquivos para o Node.js na pasta "back"
+back_end/logs
+back_end/*.log
+back_end/npm-debug.log*
+back_end/yarn-debug.log*
+back_end/yarn-error.log*
+back_end/lerna-debug.log*
+back_end/.pnpm-debug.log*
+
+# Ignorar pastas de dependências e builds no "back_end"
+back_end/node_modules/
+back_end/build/
+
+# Ignorar caches e arquivos gerados pelo TypeScript no "back_end"
+back_end/coverage/
+back_end/*.tsbuildinfo
+
+# Ignorar dotenv na pasta "back_end"
+back_end/.env
+back_end/.env.*
