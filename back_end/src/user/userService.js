@@ -40,3 +40,13 @@ export async function updateUserDBService(id, userDetails) {
         return false; // Falha
     }
 }
+export async function deleteUserDBService(id) {
+    try {
+        console.log(id);
+        await userModel.findByIdAndDelete(id);
+        return true;
+    } catch (error) {
+        console.error('Error deleting user:', error);
+        return false; // Falha
+    }
+}

@@ -1,4 +1,4 @@
-import { getDataFromDBService, createUserDBService, updateUserDBService } from './userService.js';
+import { getDataFromDBService, createUserDBService, updateUserDBService, deleteUserDBService } from './userService.js';
 
 export const getDataController = async (req, res) => {
     const employee = await getDataFromDBService();
@@ -14,11 +14,19 @@ export const createUserController = async (req, res) => {
     }
 };
 
-export const updateUserController = async (req,res) =>{
-    var status = await updateUserDBService(req.params.id,req.body);
+export const updateUserController = async (req, res) => {
+    var status = await updateUserDBService(req.params.id, req.body);
     if (status) {
         res.send({ "status": true, "message": "User updated" });
     } else {
         res.send({ "status": false, "message": "Error updating user" });
+    }
+}
+export const deleteUserController = async (req, res) => {
+    var status = await deleteUserDBService(req.params.id, req.body);
+    if (status) {
+        res.send({ "status": true, "message": "User deleted" });
+    } else {
+        res.send({ "status": false, "message": "Error deleting user" });
     }
 }
