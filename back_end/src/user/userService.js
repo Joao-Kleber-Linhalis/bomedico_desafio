@@ -28,3 +28,15 @@ export async function createUserDBService(userDetails) {
         return false; // Falha
     }
 }
+
+export async function updateUserDBService(id, userDetails) {
+    try {
+        console.log(id);
+        console.log(userDetails);
+        await userModel.findByIdAndUpdate(id, userDetails);
+        return true;
+    } catch (error) {
+        console.error('Error updating user:', error);
+        return false; // Falha
+    }
+}
