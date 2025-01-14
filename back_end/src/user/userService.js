@@ -10,6 +10,16 @@ export async function getDataFromDBService() {
     }
 }
 
+export async function findByIdDBService(id) {
+    try {
+        const user = await userModel.findById(id);
+        return user;
+    } catch (error) {
+        console.error('Error finding user for id: ' + id, error);
+        return false;
+    }
+}
+
 export async function createUserDBService(userDetails) {
     try {
         const userModelData = new userModel({
@@ -31,8 +41,7 @@ export async function createUserDBService(userDetails) {
 
 export async function updateUserDBService(id, userDetails) {
     try {
-        console.log(id);
-        console.log(userDetails);
+        userDetails.id = id;
         await userModel.findByIdAndUpdate(id, userDetails);
         return true;
     } catch (error) {
