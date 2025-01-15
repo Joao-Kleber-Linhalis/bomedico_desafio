@@ -1,4 +1,4 @@
-import { getDataFromDBService, createUserDBService, updateUserDBService, deleteUserDBService, findByIdDBService } from './userService.js';
+import { getDataFromDBService, createUserDBService, updateUserDBService, deleteUserDBService, findByIdDBService, generatePDFReport } from './userService.js';
 
 export const getDataUserController = async (req, res) => {
     const users = await getDataFromDBService();
@@ -38,3 +38,8 @@ export const deleteUserController = async (req, res) => {
         res.send({ "status": false, "message": "Error deleting user" });
     }
 }
+
+export const generatePDFReportController = async (req, res) => {
+    const camp = req.params.camp;
+    await generatePDFReport(camp, res);
+};
