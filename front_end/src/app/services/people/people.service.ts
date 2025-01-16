@@ -32,4 +32,8 @@ export class PeopleService {
   delete(id: any): Observable<void> {
     return this.http.delete<void>(`${this._baseUrl}/delete/${id}`)
   }
+
+  generateReport(camp: string): Observable<Blob> {
+    return this.http.get<Blob>(`${this._baseUrl}/report/${camp}`, { responseType: 'blob' as 'json' });
+  }
 }

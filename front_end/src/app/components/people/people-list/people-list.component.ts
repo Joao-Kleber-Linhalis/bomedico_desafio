@@ -87,4 +87,18 @@ export class PeopleListComponent implements OnInit {
       this.findAll(false)
     })
   }
+
+  generateReport(camp: string): void {
+    this.service.generateReport(camp).subscribe({
+      next: (response) => {
+        const blobUrl = URL.createObjectURL(response);
+        window.open(blobUrl, '_blank');
+      },
+      error: (e) => {
+        this.toast.error("Erro ao gerar relatório", "ERRO");
+        console.log(e);
+      }
+    })
+
+  }
 }

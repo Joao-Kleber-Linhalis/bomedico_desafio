@@ -132,3 +132,43 @@ mat-cell {
 .footer a:hover {
     text-decoration: underline;
 }
+
+.actions-container {
+    display: flex;
+    justify-content: space-between; /* Distribui espaço entre os itens */
+    align-items: center; /* Alinha os itens verticalmente */
+    margin-bottom: 1rem; /* Espaço inferior para separar dos elementos abaixo */
+}
+
+.add-button {
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3); /* Sombras sutis */
+}
+
+.description-button{
+    color: white;
+}
+
+.report-button {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem; /* Espaçamento entre o ícone e o texto */
+    font-size: 0.875rem; /* Tamanho do texto */
+    font-weight: bold; /* Deixa o texto em negrito */
+}
+
+.report-button a {
+    text-decoration: none; /* Remove o sublinhado */
+    color: #3f51b5; /* Cor do link */
+    font-weight: bold; /* Deixa o link em negrito */
+    cursor: pointer; /* Mostra o cursor de link */
+}
+
+.report-button a:hover {
+    text-decoration: underline; /* Adiciona sublinhado no hover */
+    color: #303f9f; /* Cor mais escura no hover */
+}
+
+.report-text {
+    color: #fff; /* Texto "Relatório por" e "ou" em branco */
+    font-weight: normal; /* Texto normal sem negrito */
+}

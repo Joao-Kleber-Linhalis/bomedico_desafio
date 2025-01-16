@@ -1,6 +1,19 @@
 <body>
     <div class="container">
         <h1 class="title">People List</h1>
+        <div class="actions-container">
+            <button mat-fab color="primary" class="add-button" (click)="openFormDialog()">
+                <mat-icon>add</mat-icon>
+            </button>
+
+            <div class="report-button">
+                <mat-icon class="description-button">description</mat-icon>
+                <span class="report-text">Relatório por</span>
+                <a href="javascript:void(0);" (click)="generateReport('state')">Estado</a> 
+                <span class="report-text">ou</span>
+                <a href="javascript:void(0);" (click)="generateReport('city')">Cidade</a>
+            </div>
+        </div>
 
         <mat-table #table [dataSource]="dataSource" class="mat-elevation-z8">
 
@@ -25,7 +38,8 @@
                     <button mat-icon-button color="primary" (click)="openFormDialog(element)">
                         <i class="material-icons edit">edit</i>
                     </button>
-                    <button mat-icon-button color="warn" (click)="delete(element._id,element.first_name + ' ' + element.last_name)">
+                    <button mat-icon-button color="warn"
+                        (click)="delete(element._id,element.first_name + ' ' + element.last_name)">
                         <i class="material-icons delete">delete</i>
                     </button>
                 </mat-cell>
@@ -42,9 +56,7 @@
             <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
         </mat-table>
 
-        <button mat-fab color=" primary" class="add-button" (click)="openFormDialog()">
-            <mat-icon>add</mat-icon>
-        </button>
+
     </div>
 
     <footer class="footer">
