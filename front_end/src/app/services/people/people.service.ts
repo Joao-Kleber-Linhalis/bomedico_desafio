@@ -18,15 +18,15 @@ export class PeopleService {
   }
 
   findAll(): Observable<People[]> {
-    return this.http.get<People[]>(`${this._baseUrl}/getAll`);
+    return this.http.get<People[]>(`${this._baseUrl}/findAll`);
   }
 
   create(people: People): Observable<People> {
     return this.http.post<People>(`${this._baseUrl}/create`, people);
   }
 
-  update(people: People): Observable<People> {
-    return this.http.put<People>(`${this._baseUrl}/update/${people.id}`, people);
+  update(people: People): Observable<void> {
+    return this.http.put<void>(`${this._baseUrl}/update/${people._id}`, people);
   }
 
   delete(id: any): Observable<void> {

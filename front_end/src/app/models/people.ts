@@ -1,5 +1,5 @@
 export interface People {
-    id?: any,
+    _id?: any,
     first_name: string,
     last_name: string,
     state: string,
