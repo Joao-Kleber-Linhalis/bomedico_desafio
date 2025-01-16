@@ -1,45 +1,70 @@
-import { getDataFromDBService, createUserDBService, updateUserDBService, deleteUserDBService, findByIdDBService, generatePDFReport } from './userService.js';
+import { findAllDBService, createUserDBService, updateUserDBService, deleteUserDBService, findByIdDBService, generatePDFReport } from './userService.js';
 
-export const getDataUserController = async (req, res) => {
-    const users = await getDataFromDBService();
-    res.send({ "status": true, "data": users });
+export const findAllUserController = async (req, res) => {
+    try {
+        const users = await findAllDBService();
+        res.send(users);
+    } catch (error) {
+        res.status(500).send({ status: false, message: "Error retrieving users", error: error.message });
+    }
 };
 
 export const findByIdUserController = async (req, res) => {
-    const user = await findByIdDBService(req.params.id);
-    if (user === false) {
-        res.send({ "status": false, "message": "No user find for id: " + req.params.id });
+    try {
+        const user = await findByIdDBService(req.params.id);
+        if (!user) {
+            return res.status(404).send({ status: false, message: "No user found for id: " + req.params.id });
+        }
+        res.send(user);
+    } catch (error) {
+        res.status(500).send({ status: false, message: "Error retrieving user", error: error.message });
     }
-    res.send({ "status": true, "data": user });
 };
 
 export const createUserController = async (req, res) => {
-    const status = await createUserDBService(req.body);
-    if (status) {
-        res.send({ "status": true, "message": "User created successfully" });
-    } else {
-        res.send({ "status": false, "message": "Error creating user" });
+    try {
+        const status = await createUserDBService(req.body);
+        if (status) {
+            res.status(201).send({ status: true, message: "User created successfully" });
+        } else {
+            res.status(400).send({ status: false, message: "Error creating user" });
+        }
+    } catch (error) {
+        res.status(500).send({ status: false, message: "Internal server error", error: error.message });
     }
 };
 
 export const updateUserController = async (req, res) => {
-    var status = await updateUserDBService(req.params.id, req.body);
-    if (status) {
-        res.send({ "status": true, "message": "User updated" });
-    } else {
-        res.send({ "status": false, "message": "Error updating user" });
+    try {
+        const status = await updateUserDBService(req.params.id, req.body);
+        if (status) {
+            res.send({ status: true, message: "User updated successfully" });
+        } else {
+            res.status(404).send({ status: false, message: "User not found for update" });
+        }
+    } catch (error) {
+        res.status(500).send({ status: false, message: "Error updating user", error: error.message });
     }
-}
+};
+
 export const deleteUserController = async (req, res) => {
-    var status = await deleteUserDBService(req.params.id);
-    if (status) {
-        res.send({ "status": true, "message": "User deleted" });
-    } else {
-        res.send({ "status": false, "message": "Error deleting user" });
+    try {
+        const status = await deleteUserDBService(req.params.id);
+        if (status) {
+            res.send({ status: true, message: "User deleted successfully" });
+        } else {
+            res.status(404).send({ status: false, message: "User not found for deletion" });
+        }
+    } catch (error) {
+        res.status(500).send({ status: false, message: "Error deleting user", error: error.message });
     }
-}
+};
 
 export const generatePDFReportController = async (req, res) => {
-    const camp = req.params.camp;
-    await generatePDFReport(camp, res);
+    try {
+        const camp = req.params.camp;
+        await generatePDFReport(camp, res);
+    } catch (error) {
+        res.status(500).send({ status: false, message: "Error generating PDF report", error: error.message });
+    }
 };

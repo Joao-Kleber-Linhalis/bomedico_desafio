@@ -1,8 +1,7 @@
 import userModel from './userModel.js';
 import PDFDocument from 'pdfkit';
-import fs from 'fs';
 
-export async function getDataFromDBService() {
+export async function findAllDBService() {
     try {
         const users = await userModel.find({});
         return users;

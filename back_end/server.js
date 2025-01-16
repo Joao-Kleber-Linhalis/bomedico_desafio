@@ -19,9 +19,13 @@ mongoose.connect(
 })
 
 
+server.use(cors({
+    origin: 'http://localhost:4200', 
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    credentials: true
+}));
 server.use(json());
 server.use(routes);
-server.use(cors());
 
 
 server.listen(8000, function check(error) {
