@@ -66,8 +66,6 @@ export class PeopleListComponent implements OnInit {
   openFormDialog(people?: People) {
     const dialogConfig = new MatDialogConfig;
     dialogConfig.autoFocus = true;
-    dialogConfig.width = "25%";
-    dialogConfig.height = '400px';
     dialogConfig.data = {
       title: people != null ? "Edição" : "Cadastro",
       people: people?._id

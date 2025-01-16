@@ -6,4 +6,5 @@ export interface People {
     city: string,
     email: string,
     phone: string,
+    cep: string,
 }

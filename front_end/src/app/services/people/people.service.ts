@@ -21,8 +21,8 @@ export class PeopleService {
     return this.http.get<People[]>(`${this._baseUrl}/findAll`);
   }
 
-  create(people: People): Observable<People> {
-    return this.http.post<People>(`${this._baseUrl}/create`, people);
+  create(people: People): Observable<void> {
+    return this.http.post<void>(`${this._baseUrl}/create`, people);
   }
 
   update(people: People): Observable<void> {

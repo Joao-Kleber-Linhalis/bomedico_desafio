@@ -8,6 +8,7 @@ const userSchema = new Schema({
     city: { type: String, required: true },
     email: { type: String, required: true },
     phone: { type: String, required: true },
+    cep: { type: String, required: true },
 });
 
 const UserModel = mongoose.model('employees', userSchema);

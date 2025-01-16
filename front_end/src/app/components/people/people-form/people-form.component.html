@@ -1,1 +1,57 @@
-<p>people-form works!</p>
+<div mat-dialog-content class="fullWidth">
+    <form [formGroup]="form" class="form">
+        <h1 mat-dialog-title>{{inputData.title + " de Pessoa"}}</h1>
+        <div style="display: flex; justify-content: space-between;">
+            <mat-form-field appearance="outline" style="flex-grow: 1; margin-right: 0.5rem;">
+                <mat-label>Primeiro Nome</mat-label>
+                <input matInput formControlName="first_name" [(ngModel)]="people.first_name" required
+                    placeholder="Ex... Pedro" maxlength="50">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" style="flex-grow: 1;">
+                <mat-label>Último Nome</mat-label>
+                <input matInput formControlName="last_name" [(ngModel)]="people.last_name" required
+                    placeholder="Ex... Machado" maxlength="50">
+            </mat-form-field>
+        </div>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Email</mat-label>
+            <input matInput formControlName="email" [(ngModel)]="people.email" required
+                placeholder="Ex... fulano@example.com" maxlength="50">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Telefone</mat-label>
+            <input matInput formControlName="phone" [(ngModel)]="people.phone" required placeholder="Ex... 27999999999"
+                maxlength="11">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" style="display: flex; align-items: center;">
+            <mat-label>CEP</mat-label>
+            <input matInput formControlName="cep" [(ngModel)]="people.cep" required placeholder="Ex... 99999999"
+                maxlength="8">
+
+            <!-- Ícone de lupa como botão -->
+            <button mat-icon-button matSuffix aria-label="Buscar CEP" (click)="getCep()">
+                <mat-icon>search</mat-icon>
+            </button>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Estado</mat-label>
+            <input matInput formControlName="state" [(ngModel)]="people.state" readonly placeholder="Ex... ES">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Cidade</mat-label>
+            <input matInput formControlName="city" [(ngModel)]="people.city" readonly placeholder="Ex... Vitória">
+        </mat-form-field>
+    </form>
+</div>
+
+<div mat-dialog-actions class="actions">
+    <button [disabled]="!form.valid" (click)="save()" mat-raised-button [ngClass]="{ 'success': form.valid }">{{
+        isCreate ? "Cadastrar" : "Atualizar" }}</button>
+    <button (click)="closeDialog()" mat-raised-button color="warn">Cancelar</button>
+</div>

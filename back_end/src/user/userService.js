@@ -30,6 +30,7 @@ export async function createUserDBService(userDetails) {
             city: userDetails.city,
             email: userDetails.email,
             phone: userDetails.phone,
+            cep: userDetails.cep,
         });
 
         await userModelData.save();
